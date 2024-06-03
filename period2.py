@@ -15,10 +15,9 @@ encoderR = Encoder(1,12,13)
 arm = Servo(16)
 
 wheelDiameter = 6 # cm
-trackwidth = 15.5 # cm
 
 def turnRight():
-    trackwidth = 16 # cm
+    trackwidth = 15.5 # cm
     quarterTurn = 0.25*math.pi*trackwidth
     while abs(encoderR.get_position())*math.pi*wheelDiameter < quarterTurn: 
         motorL.set_effort(0.5)
@@ -26,7 +25,7 @@ def turnRight():
     stop()
     
 def turnLeft():
-    trackwidth = 16 # cm
+    trackwidth = 15.5 # cm
     quarterTurn = 0.25*math.pi*trackwidth
     while abs(encoderL.get_position())*math.pi*wheelDiameter < quarterTurn: 
         motorL.set_effort(-0.5)
