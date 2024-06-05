@@ -17,13 +17,13 @@ arm = Servo(16)
 
 wheelDiameter = 6 # cm
 
-#def turnRight():
-#    trackwidth = 15.5 # cm
-#    quarterTurn = 0.25*math.pi*trackwidth
-#    while abs(encoderR.get_position())*math.pi*wheelDiameter < quarterTurn: 
-#        motorL.set_effort(0.5)
-#        motorR.set_effort(-0.5)
-#    stop()
+def turnRight():
+    imu.reset_yaw()
+    while imu.get_yaw() > (-90):
+        motorL.set_effort(0.5)
+        motorR.set_effort(-0.5)
+    imu.reset_yaw()
+    stop()
     
 def turnLeft():
     imu.reset_yaw()
@@ -37,6 +37,7 @@ def moveForward(distancecm):
     while abs(encoderL.get_position())*math.pi*wheelDiameter < distancecm: 
         motorL.set_effort(0.5)
         motorR.set_effort(0.5)
+    resetEncoders()
     stop()
     
 def stop():
@@ -65,7 +66,17 @@ def moveSquare(sidelength):
         resetEncoders()
         turnLeft()
 
-moveSquare(20)
-#waveArm()
 
-#turnLeft()
+#stop()
+#moveSquare(10)
+
+# 1 tile = 30cm
+moveForward(60) # 2 tiles 
+turnRight()
+moveForward(60) # 2 tiles
+turnLeft()
+moveForward(90) # 3 tiles 
+turnLeft()
+moveForward(60) # 2 tiles 
+turnRight()
+moveForward(30) # 1 tile
