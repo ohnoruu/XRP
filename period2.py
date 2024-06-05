@@ -22,6 +22,7 @@ def turnRight():
     while abs(encoderR.get_position())*math.pi*wheelDiameter < quarterTurn: 
         motorL.set_effort(0.5)
         motorR.set_effort(-0.5)
+    resetEncoders()
     stop()
     
 def turnLeft():
@@ -30,12 +31,14 @@ def turnLeft():
     while abs(encoderL.get_position())*math.pi*wheelDiameter < quarterTurn: 
         motorL.set_effort(-0.5)
         motorR.set_effort(0.5)
+    resetEncoders()
     stop()
     
 def moveForward(distancecm):
     while abs(encoderL.get_position())*math.pi*wheelDiameter < distancecm: 
         motorL.set_effort(0.5)
         motorR.set_effort(0.5)
+    resetEncoders()
     stop()
     
 def stop():
@@ -65,5 +68,16 @@ def moveSquare(sidelength):
         turnLeft()
 
 #stop()
-moveSquare(10)
+#moveSquare(10)
 #waveArm()
+
+# 1 tile = 12cm
+moveForward(24) # 2 tiles 
+turnRight()
+moveForward(24) # 2 tiles
+turnLeft()
+moveForward(36) # 3 tiles 
+turnLeft()
+moveForward(24) # 2 tiles 
+turnRight()
+moveForward(12) # 1 tile
